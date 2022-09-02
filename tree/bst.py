@@ -25,9 +25,6 @@ class BST:
     def add_node(self, node, e):
         """
         函数的意义: 返回添加了这个e的node为根节点的子树
-        :param node:
-        :param e:
-        :return:
         """
         if node is None:
             self.size += 1
@@ -96,6 +93,7 @@ class BST:
     def del_min_node(self, node):
         """函数定义: 删除以node为根节点的最小的节点, 返回删除后新的根"""
         if node.left is None:
+            self.size -= 1
             right_node = node.right
             node.right = None
             return right_node
@@ -122,11 +120,13 @@ class BST:
 
         # 等于当前节点, 左边为空返回右树, 右边为空, 返回左树
         if node.left is None:
+            self.size -= 1
             right_node = node.right
             node.right = None
             return right_node
 
         if node.right is None:
+            self.size -= 1
             left_node = node.left
             node.left = None
             return left_node
@@ -186,6 +186,9 @@ class BST:
         if node is None: return 0
 
         return max(self.__max_deep(node.left), self.__max_deep(node.right)) + 1
+
+    def is_empty(self):
+        return self.size == 0
 
 
 if __name__ == '__main__':
