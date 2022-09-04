@@ -6,6 +6,9 @@ class MyArray:
         # 容量cap
         self.size = 0
 
+    def swap(self, k, target):
+        self.data[k], self.data[target] = self.data[target], self.data[k]
+
     def is_element_index(self, index):
         return 0 <= index < self.size
 
