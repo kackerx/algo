@@ -1,13 +1,20 @@
 class MyArray:
-    INIT_CAPA = 10
+    INIT_CAPA = 20
 
-    def __init__(self):
+    def __init__(self, array=None):
+        """ 如果传入现成的数组, 直接复用(堆的heapify) """
+        if array:
+            self.data = array
+            # 容量cap
+            self.size = len(array)
+            return
+
         self.data = [None for i in range(self.INIT_CAPA)]
         # 容量cap
         self.size = 0
 
     def swap(self, k, target):
-        self.data[k], self.data[target] = self.data[target], self.data[k]
+                    self.data[k], self.data[target] = self.data[target], self.data[k]
 
     def is_element_index(self, index):
         return 0 <= index < self.size

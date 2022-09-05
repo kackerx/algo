@@ -1,4 +1,4 @@
-from array.myarray import MyArray
+from myarray.myarray import MyArray
 
 
 class MaxHeap:
@@ -10,7 +10,12 @@ class MaxHeap:
     right(i) = 2 * i + 1 ||  2 * i + 2
     """
 
-    def __init__(self):
+    def __init__(self, array=None):
+        if array:
+            self.data = MyArray(array)
+            self.heapify()
+            return
+
         self.data = MyArray()
 
     def size(self):
@@ -18,6 +23,9 @@ class MaxHeap:
 
     def is_empty(self):
         return self.data.is_empty()
+
+    def get_front(self):
+        return self.data.get(0)
 
     def parent(self, index):
         """ 父亲节点索引 """
@@ -56,7 +64,6 @@ class MaxHeap:
             j = self.left_child(k)
             if j + 1 < self.data.size and self.data.get(j + 1) > self.data.get(j):  # 如果有右孩子, 且右孩子的值大于左孩子, j为其中较大值的下标
                 j = j + 1
-
             if self.data.get(k) > self.data.get(j): break  # k比两个孩子大
 
             self.data.swap(k, j)
@@ -74,21 +81,29 @@ class MaxHeap:
     def heapify(self):
         """
         给定任意一个数组, 维护成堆
-        - 从最后一个非叶子节点向前遍历, 分别执行sift down操作, 每个节点就落到了该在的位置
+        - 从最后一个非叶子节点(parent(size - 1))向前遍历, 分别执行sift down操作, 每个节点就落到了该在的位置
         - 最后一个非叶子节点: 最后一个节点的父亲节点
         """
+        k = self.parent(self.data.size - 1)
+        while k >= 0:
+            self.sift_down(k)
+            k = k - 1
+
+
 
 
 if __name__ == '__main__':
-    max_heap = MaxHeap()
-    max_heap.add(0)
-    max_heap.add(5)
-    max_heap.add(2)
-    max_heap.add(7)
-    max_heap.add(18)
-    max_heap.add(8)
-    max_heap.add(10)
-    max_heap.add(9)
+    array = [0, 5, 2, 7, 18, 8, 10, 9]
+    max_heap = MaxHeap(array)
+    # max_heap.add(0)
+    # max_heap.add(5)
+    # max_heap.add(2)
+    # max_heap.add(7)
+    # max_heap.add(18)
+    # max_heap.add(8)
+    # max_heap.add(10)
+    # max_heap.add(9)
+
 
     print(max_heap.extract_max())
     print(max_heap.extract_max())
