@@ -1,9 +1,12 @@
 def sol_349(nums1, nums2):
-    s = set()
-    for i in nums1:
-        if i in nums2:
-            s.add(i)
-    return list(s)
+    s = set(nums1)
+
+    res = set()
+    for i in nums2:
+        if i in s:
+            res.add(i)
+
+    return list(res)
 
 
 def sol_350(nums1, nums2):

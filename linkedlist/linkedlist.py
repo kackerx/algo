@@ -64,8 +64,8 @@ if __name__ == '__main__':
     l.head.next = n0
     print(l)
 
-    l.reverse()
-    print(l)
+    # l.reverse()
+    # print(l)
 
     l.reversed_r()
     print(l)
