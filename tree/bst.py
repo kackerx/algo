@@ -3,8 +3,9 @@ from stack.stack import Stack
 
 
 class Node:
-    def __init__(self, data=None):
-        self.data = data
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
         self.left = None
         self.right = None
 
